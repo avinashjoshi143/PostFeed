@@ -1,0 +1,48 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #95dada;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 25px;
+    -moz-OSX-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translate(0);
+    transition: transform 0.25s ease-out;
+    position: relative;
+}
+
+
+
+.card-container:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.card-container:hover .link {
+    display: block;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    border: grey;
+    background-color: white;
+    text-decoration: none;
+    padding: 10px 10px;
+    opacity: 1;
+}
+
+.link {
+    display: none;
+}
+
+.card-container:hover .link:hover {
+    background-color: #0ccac4;
+}
+
+
+
+
+
+
+
+
