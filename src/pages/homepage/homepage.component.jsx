@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import getPostData from '../../utility/getpostdata';
 import CardList from '../../components/card-list/card.list.component';
 import SearchBox from '../../components/search-box/search-box.component';
@@ -14,7 +14,6 @@ import Header from '../../components/Header/header.component';
 
 export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filterByTitle }) => {
 
-    const [state, setState] = useState({ val: '' });
     useEffect(() => {
         if (!posts.length)
             getPostData().then(data => fetchPostData(data));
@@ -22,7 +21,6 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
 
     const handleChange = event => {
         let title = event.target.value;
-        setState({ ...state, val: title });
         filterByTitle(title);
     }
 
