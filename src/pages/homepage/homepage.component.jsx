@@ -14,12 +14,14 @@ import Header from '../../components/Header/header.component';
 
 export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filterByTitle }) => {
 
+    let suggestions = posts.map(post => post.title)
+
     useEffect(() => {
         if (!posts.length)
             getPostData().then(data => fetchPostData(data));
     }, [posts.length, fetchPostData])
 
-    const handleChange = (event) => {
+    const handleChange = event => {
         let title = event.target.value;
         filterByTitle(title);
     }

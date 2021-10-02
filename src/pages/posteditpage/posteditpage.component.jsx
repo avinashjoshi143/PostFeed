@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Header from '../../components/Header/header.component';
 
 function PostEditPage({ location, updatePostTitleAndBody, filterByTitle, history }) {
-    const [state, setState] = useState({ title: location.state.title, body: location.state.body })
+    const [state, setState] = useState({ title: location.state.title, body: location.state.body });
 
     const handleTitleChange = (event) => {
         setState({ ...state, title: event.target.value });
