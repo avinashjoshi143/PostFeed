@@ -15,23 +15,31 @@
 .postionabsolute {
   position: absolute;
   z-index: 1;
-}
-
-.suggestion {
   -webkit-appearance: none;
   border: none;
   outline: none;
-  border: 1px solid lightskyblue;
-  width: 1050px;
+  border: none;
+  width: 1052px;
   margin-left: 105px;
-  border-radius: 5px;
   cursor: pointer;
-  color: #0ccac4;
-  font-size: 1em;
+  color: black;
   margin-top: 0;
   margin-bottom: 0;
+  background-color: white ;
+  border-radius: 5px;
+}
+
+.suggestion {
   font-weight: lighter;
-  background-color: rgba(7, 27, 82, 1) ;
+  font-size: 1em;
+}
+
+.blurbackground {
+  background-color: rgba(0,128,128,0.2);
+  backdrop-filter: blur(5px);
+}
+.adjust-width {
+  margin-left: 18px;
 }
 
 
