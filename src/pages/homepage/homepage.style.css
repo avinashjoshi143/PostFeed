@@ -7,3 +7,31 @@
   font-size: 72px;
   color: #0ccac4;
 }
+
+.fixedposition {
+  position: relative;
+}
+
+.postionabsolute {
+  position: absolute;
+  z-index: 1;
+}
+
+.suggestion {
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  border: 1px solid lightskyblue;
+  width: 1050px;
+  margin-left: 105px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #0ccac4;
+  font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: lighter;
+  background-color: rgba(7, 27, 82, 1) ;
+}
+
+

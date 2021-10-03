@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import getPostData from '../../utility/getpostdata';
 import CardList from '../../components/card-list/card.list.component';
 import SearchBox from '../../components/search-box/search-box.component';
@@ -14,6 +14,9 @@ import Header from '../../components/Header/header.component';
 
 export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filterByTitle }) => {
 
+    const [text, SetText] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+
     useEffect(() => {
         if (!posts.length)
             getPostData().then(data => fetchPostData(data));
@@ -21,7 +24,23 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
 
     const handleChange = event => {
         let title = event.target.value;
+        let matches = [];
+        if (title.length > 0) {
+            matches = posts.filter(post => {
+                const regex = new RegExp(`${text}`, "gi");
+                return post.title.match(regex)
+            })
+        }
+        console.log(matches);
+        setSuggestions(matches);
         filterByTitle(title);
+        SetText(title);
+    }
+
+    const handleClick = title => {
+        filterByTitle(title);
+        SetText(title)
+        setSuggestions([]);
     }
 
     const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchField.trim().toLowerCase()))
@@ -31,9 +50,21 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
             <SearchBox
                 placeHolder='search posts'
                 handlechange={handleChange}
+                value={text}
             />
+            <div className="postionabsolute">
+                {suggestions && suggestions.map(suggestion =>
+                    <h2
+                        key={suggestion.id}
+                        onClick={() => handleClick(suggestion.title)}
+                        className="suggestion"
+                    >
+                        {suggestion.title}
+                    </h2>
+                )}
+            </div>
             {
-                isDataLoaded ? (<CardList posts={filteredPosts} />) : <Spinner data-testid="spinner" />
+                isDataLoaded ? (<CardList className="fixedposition" posts={filteredPosts} />) : <Spinner data-testid="spinner" />
             }
         </div>
     );
