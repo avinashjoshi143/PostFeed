@@ -32,6 +32,8 @@
 .suggestion {
   font-weight: lighter;
   font-size: 1em;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .blurbackground {
