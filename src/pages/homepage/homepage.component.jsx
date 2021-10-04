@@ -55,7 +55,7 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
                 handlechange={handleChange}
                 value={searchField}
             />
-            <div className="postionabsolute">
+            <div className="postionabsolute" >
                 {
                     state.suggestions.length ?
                         state.suggestions.map(suggestion =>
