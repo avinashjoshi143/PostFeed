@@ -14,9 +14,7 @@ import Header from '../../components/Header/header.component';
 
 export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filterByTitle }) => {
 
-    const [text, SetText] = useState('');
-    const [suggestions, setSuggestions] = useState([]);
-    let [isNotClicked, setIsNotClicked] = useState(true);
+    const [state, setState] = useState({ isNotClicked: true, suggestions: [] });
 
     useEffect(() => {
         if (!posts.length)
@@ -33,37 +31,34 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
             })
         }
         console.log(matches.length);
-        if(matches.length && text !== ''){
-            setIsNotClicked(false);
+        if (matches.length && searchField !== '') {
+            setState({ ...state, isNotClicked: false });
         }
         else {
-            setIsNotClicked(true);
+            setState({ suggestions: [], isNotClicked: true });
         }
-        setSuggestions(matches);
+        setState({ ...state, suggestions: matches });
         filterByTitle(title);
-        SetText(title);
     }
 
     const handleClick = title => {
         filterByTitle(title);
-        SetText(title)
-        setSuggestions([]);
-        setIsNotClicked(false);
+        setState({ isNotClicked: false, suggestions: [] });
     }
 
     const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchField.trim().toLowerCase()))
     return (
-        <div className={`App ${suggestions.length && text !=='' ? 'blurbackground' : 'adjust-width'}`}>
+        <div className={`App ${state.suggestions.length && searchField !== '' ? 'blurbackground' : 'adjust-width'}`}>
             <Header className="apph1" heading="Post Feed" />
             <SearchBox
                 placeHolder='search posts'
                 handlechange={handleChange}
-                value={text}
+                value={searchField}
             />
             <div className="postionabsolute">
                 {
-                    suggestions.length ?
-                        suggestions.map(suggestion =>
+                    state.suggestions.length ?
+                        state.suggestions.map(suggestion =>
                             <h2
                                 key={suggestion.id}
                                 onClick={() => handleClick(suggestion.title)}
@@ -71,7 +66,7 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
                             >
                                 {suggestion.title}
                             </h2>)
-                        : text !== '' && isNotClicked ?  <h2 className="suggestion">
+                        : searchField !== '' && state.isNotClicked ? <h2 className="suggestion">
                             No suggestions Available
                         </h2>
                             : ''
