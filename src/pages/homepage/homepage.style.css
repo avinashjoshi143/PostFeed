@@ -7,3 +7,41 @@
   font-size: 72px;
   color: #0ccac4;
 }
+
+.fixedposition {
+  position: relative;
+}
+
+.postionabsolute {
+  position: absolute;
+  z-index: 1;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  border: none;
+  width: 1052px;
+  margin-left: 105px;
+  cursor: pointer;
+  color: black;
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: white ;
+  border-radius: 5px;
+}
+
+.suggestion {
+  font-weight: lighter;
+  font-size: 1em;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.blurbackground {
+  background-color: rgba(0,128,128,0.2);
+  backdrop-filter: blur(5px);
+}
+.adjust-width {
+  margin-left: 18px;
+}
+
+
