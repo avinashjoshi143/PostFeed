@@ -83,7 +83,7 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
                 handlechange={handleChange}
                 value={searchField}
             />
-            <Button onClick={sortPosts} name={`${state.sorted ? 'Desc' : 'Asse'}`} />
+            <Button onClick={sortPosts} name={`${state.sorted ? 'Descending' : 'Ascending'}`} />
             <div className="postionabsolute" >
                 {
                     state.suggestions.length ?
