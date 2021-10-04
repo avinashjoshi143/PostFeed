@@ -2,7 +2,7 @@ import './button.style.css';
 import PropTypes from 'prop-types';
 
 export const Button = ({ name, ...otherInputProps }) => (
-    <button className="button" {...otherInputProps}  >
+    <button className="button"  {...otherInputProps}  >
         {name}
     </button>
 );

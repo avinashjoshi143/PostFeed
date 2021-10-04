@@ -11,10 +11,11 @@ import './homepage.style.css';
 import Spinner from '../../components/spinner/spinner.component';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header/header.component';
+import Button from '../../components/button/button.component';
 
 export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filterByTitle }) => {
 
-    const [state, setState] = useState({ isNotClicked: true, suggestions: [] });
+    const [state, setState] = useState({ isNotClicked: true, suggestions: [], sorted: false });
 
     useEffect(() => {
         if (!posts.length)
@@ -46,6 +47,33 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
         setState({ isNotClicked: false, suggestions: [] });
     }
 
+    const sortPosts = () => {
+        if (!state.sorted) {
+            posts = posts.sort((a, b) => {
+                if (a.title > b.title) {
+                    return 1
+                }
+                else {
+                    return -1
+                }
+            });
+            fetchPostData(posts);
+            setState({ ...state, sorted: true })
+        }
+        else {
+            posts = posts.sort((a,b)=>{
+                if(a.title < b.title) {
+                    return 1
+                }
+                else {
+                    return -1
+                }
+            })
+            fetchPostData(posts)
+            setState({...state, sorted: false})
+        }
+
+    }
     const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchField.trim().toLowerCase()))
     return (
         <div className={`App ${state.suggestions.length && searchField !== '' ? 'blurbackground' : 'adjust-width'}`}>
@@ -55,6 +83,7 @@ export const HomePage = ({ fetchPostData, posts, isDataLoaded, searchField, filt
                 handlechange={handleChange}
                 value={searchField}
             />
+            <Button onClick={sortPosts} name={`${state.sorted ? 'Desc' : 'Asse'}`} />
             <div className="postionabsolute" >
                 {
                     state.suggestions.length ?
