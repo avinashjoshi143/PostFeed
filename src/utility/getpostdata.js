@@ -1,4 +1,4 @@
 export default function getPostData() {
-   return fetch("http://localhost:3001/posts", { mode: 'cors' }).then(res => res.json());
+   return fetch("https://jsonplaceholder.typicode.com/posts", { mode: 'cors' }).then(res => res.json());
 
 }
